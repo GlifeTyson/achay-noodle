@@ -9,6 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary: "#FFC700",
+        dough: "#efebda",
+        flour: "#fffceb",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
