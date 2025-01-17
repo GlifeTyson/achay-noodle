@@ -1,22 +1,13 @@
 "use client";
 import React from "react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { imageUrls } from "@/utils/constants";
+import { imageUrls, landingContent } from "@/utils/constants";
 import { EmblaOptionsType } from "embla-carousel";
-import "@/components/module/ui/EmblaCarousel/embla.css";
 import EmblaCarousel from "@/components/module/ui/EmblaCarousel/EmblaCarousel";
+import "@/components/module/ui/EmblaCarousel/embla.css";
 // import ImageSlider from "@/components/module/ui/ImageSlider";
 
 const optionsEmblaCarousel: EmblaOptionsType = { loop: true };
-
-const content = {
-  title: "Tiệm mì A Chảy",
-  since: "Since 2025",
-  describe:
-    "Với phương châm: “Nơi ẩm thực Hồng Kông được tôn vinh và chăm chút." +
-    "Chúng tôi mang đến quý khách sự trải nghiệm tuyệt đối từ vị giác đến" +
-    " văn hóa ẩm thực”.",
-};
 
 const variants = {
   visible: {
@@ -52,6 +43,7 @@ const Landing = () => {
       setScrollInto("introduce");
     }
   });
+
   return (
     <section id="introduce" className="relative w-full h-[100vh] bg-flour">
       <motion.div
@@ -78,7 +70,7 @@ const Landing = () => {
             }}
             className="text-playfair text-3xl md:text-5xl font-extrabold text-white"
           >
-            {content.title}
+            {landingContent.title}
           </motion.h1>
           <motion.h2
             initial={{ transform: "translateX(-200px)" }}
@@ -86,7 +78,7 @@ const Landing = () => {
             transition={{ type: "spring", visualDuration: 0.4, bounce: 0.5 }}
             className="text-playfair text-2xl md:text-3xl font-extrabold text-white"
           >
-            {content.since}
+            {landingContent.since}
           </motion.h2>
         </div>
         <div>
@@ -96,7 +88,7 @@ const Landing = () => {
             animate={"visible"}
             className="text-playfair text-white text-sm md:text-2xl"
           >
-            {content.describe}
+            {landingContent.describe}
           </motion.p>
         </div>
         <div className="mt-0 md:mt-10 w-full h-full mx-auto">

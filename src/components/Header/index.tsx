@@ -5,37 +5,15 @@ import { ChevronRight, Globe } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import Image from "next/image";
 import React, { useState } from "react";
-import CustomPopover from "../module/ui/CustomPopover";
+import CustomPopover from "@/components/module/ui/CustomPopover";
+import { flags, headerItems } from "@/utils/constants";
 
-const items = [
-  {
-    id: "introduce",
-    label: "Giới thiệu",
-  },
-  {
-    id: "menu",
-    label: "Thực đơn",
-  },
-  {
-    id: "member",
-    label: "Thành viên",
-  },
-  {
-    id: "contact",
-    label: "Liên hệ",
-  },
-];
-
-const flags = [
-  { flagUrl: "/assets/flags/vn.png", language: "Tiếng Việt" },
-  { flagUrl: "/assets/flags/us.png", language: "English" },
-];
 const Header = () => {
   const scrollToSection = useScrollToSection();
   const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll();
-  const firstTwoItems = items.slice(0, 2);
-  const lastTwoItems = items.slice(2, 3);
+  const firstTwoItems = headerItems.slice(0, 2);
+  const lastTwoItems = headerItems.slice(2, 3);
   return (
     <header className="fixed top-0 left-0 right-0 bg-flour/90 border border-flour rounded-b-3xl z-10 shadow-2xl text-playfair">
       <motion.div
