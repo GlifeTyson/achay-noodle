@@ -7,7 +7,8 @@ import "@/components/module/ui/EmblaCarousel/embla.css";
 import EmblaCarousel from "@/components/module/ui/EmblaCarousel/EmblaCarousel";
 // import ImageSlider from "@/components/module/ui/ImageSlider";
 
-const OPTIONS: EmblaOptionsType = { loop: true };
+const optionsEmblaCarousel: EmblaOptionsType = { loop: true };
+
 const content = {
   title: "Tiệm mì A Chảy",
   since: "Since 2025",
@@ -100,7 +101,11 @@ const Landing = () => {
         </div>
         <div className="mt-0 md:mt-10 w-full h-full mx-auto">
           {/* <ImageSlider imageUrls={imageUrls} /> */}
-          <EmblaCarousel imageUrls={imageUrls} options={OPTIONS} />
+          <EmblaCarousel
+            autoPlay
+            imageUrls={imageUrls}
+            options={optionsEmblaCarousel}
+          />
         </div>
       </div>
     </section>

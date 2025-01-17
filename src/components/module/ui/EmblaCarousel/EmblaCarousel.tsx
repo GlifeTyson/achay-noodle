@@ -13,6 +13,7 @@ import {
 } from "./EmblaCarouselArrowButtons";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import Image from "next/image";
+import Autoplay, { AutoplayType } from "embla-carousel-autoplay";
 
 const TWEEN_FACTOR_BASE = 0.84;
 
@@ -22,11 +23,19 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
 type PropType = {
   imageUrls: string[];
   options?: EmblaOptionsType;
+  autoPlay?: boolean;
+  timePerImage?: number;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options, imageUrls } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const { options, imageUrls, autoPlay = false, timePerImage = 2000 } = props;
+
+  const plugins: AutoplayType[] = [];
+  if (autoPlay) {
+    plugins.push(Autoplay({ playOnInit: true, delay: timePerImage }));
+  }
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
   const tweenFactor = useRef(0);
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -101,12 +110,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {imageUrls.map((imageUrl, index) => (
             <div key={index} className="embla__slide">
-              <div className="relative w-full h-[35vh] md:h-[35vh]">
+              <div className="relative w-full h-[25vh] md:h-[35vh]">
                 <Image
                   fill
                   src={imageUrl}
                   alt="Your alt text"
-                  className="object-contain rounded-2xl"
+                  className="object-cover rounded-3xl"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
