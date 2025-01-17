@@ -39,7 +39,7 @@ const Menu = () => {
                 fill
                 priority
                 alt="image"
-                src="/assets/noodles/wonton.png"
+                src="/assets/noodles/wonton-pork-noodle.webp"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover size-full"
               />
