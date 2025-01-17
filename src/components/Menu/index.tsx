@@ -34,7 +34,7 @@ const Menu = () => {
             </span>
           </div>
           <div className="flex flex-col items-center border-2 md:border-4 rounded-3xl py-2 md:mb-20">
-            <div className="relative w-[80vw] h-[20vh] md:w-[20vw] md:h-[30vh] scale-75 md:hover:scale-110 transition duration-500">
+            <div className="relative w-[80vw] h-[30vh] md:w-[20vw] md:h-[30vh] scale-75 md:hover:scale-100 transition duration-500">
               <Image
                 fill
                 priority
@@ -54,13 +54,13 @@ const Menu = () => {
                 fill
                 priority
                 alt="image"
-                src="/assets/noodles/wonton-pork-noodle.webp"
+                src="/assets/noodles/extra-noodle.png"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-contain size-full"
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">
-              Hoành thánh
+              Mì tươi
             </span>
           </div>
         </div>

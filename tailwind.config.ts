@@ -12,6 +12,7 @@ export default {
         primary: "#FFC700",
         dough: "#efebda",
         flour: "#fffceb",
+        darkFlour: "#f5f0d7",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

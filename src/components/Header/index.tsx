@@ -1,5 +1,6 @@
 "use client";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { motion, useScroll } from "motion/react";
 import Image from "next/image";
 import React from "react";
 
@@ -23,10 +24,15 @@ const items = [
 ];
 const Header = () => {
   const scrollToSection = useScrollToSection();
+  const { scrollYProgress } = useScroll();
   const firstTwoItems = items.slice(0, 2);
-  const lastTwoItems = items.slice(2, 4);
+  const lastTwoItems = items.slice(2, 3);
   return (
-    <header className="fixed top-0 left-0 right-0 bg-flour/90 border border-flour rounded-b-3xl z-10 shadow-2xl">
+    <header className="fixed top-0 left-0 right-0 bg-flour/90 border border-flour rounded-b-3xl z-10 shadow-2xl text-playfair">
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-1 bg-primary/70"
+        style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
+      />
       <nav className="container mx-auto px-4 relative">
         <div className="absolute left-1/2 -translate-x-1/2 -top-7 md:-top-8">
           <li className="w-fit cursor-pointer transition duration-300 ease-out hover:scale-125">
@@ -58,7 +64,7 @@ const Header = () => {
             ))}
           </div>
           <div className="w-40" />
-          <div className="w-1/2 flex justify-center gap-3 md:justify-start md:gap-10 md:pl-20">
+          <div className="w-1/2 flex justify-start pl-3 gap-3 md:justify-start md:gap-10 md:pl-20">
             {lastTwoItems.map((item) => (
               <li key={item.id}>
                 <button

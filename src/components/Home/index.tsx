@@ -1,7 +1,7 @@
 import React from "react";
 import Member from "@/components/Member";
 import Menu from "@/components/Menu";
-import Contact from "@/components/Contact";
+// import Contact from "@/components/Contact";
 import Landing from "@/components/Landing";
 
 const HomeIndex = () => {
@@ -10,7 +10,7 @@ const HomeIndex = () => {
       <Landing />
       <Menu />
       <Member />
-      <Contact />
+      {/* <Contact /> */}
     </div>
   );
 };

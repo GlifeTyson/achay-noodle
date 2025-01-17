@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Baloo_Thambi_2, Playfair_Display } from "next/font/google";
 import Header from "@/components/Header";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={`${balooThambi2.variable} antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
