@@ -48,8 +48,7 @@ const Footer = () => {
         </div>
         <div className="mt-8 pt-8 border-t border-flour/30 text-center">
           <p className="text-sm">
-            &copy; {new Date().getFullYear()} A Chảy Noodle. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Tyson Quach. All rights reserved.
           </p>
         </div>
       </div>

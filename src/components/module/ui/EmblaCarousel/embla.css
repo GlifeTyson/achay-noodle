@@ -1,0 +1,122 @@
+.embla {
+  max-width: 48rem;
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 70%;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+
+.embla__slide__img {
+  border-radius: 1.8rem;
+  display: block;
+  height: var(--slide-height);
+  width: 100%;
+  object-fit: cover;
+}
+
+.embla__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 1.2rem;
+  width: auto;
+}
+
+.embla__buttons {
+  display: flex; /* Use flexbox for easier alignment */
+  align-items: center; /* Vertically center the buttons */
+  gap: 1rem; /* Adjust spacing between buttons */
+}
+
+.embla__button {
+  border: none; /* Remove the border */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Semi-transparent white background */
+  width: 2rem; /* Smaller size */
+  height: 2rem;
+  border-radius: 50%;
+  color: #333; /* Darker text color for better contrast */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Add smooth transitions */
+}
+
+.embla__button:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly brighter on hover */
+  transform: scale(1.1);
+}
+
+.embla__button:disabled {
+  background-color: rgba(150, 150, 150, 0.5); /* Gray out disabled buttons */
+  color: #999;
+  cursor: default;
+  transform: none; /* Prevent scaling on disabled buttons */
+}
+
+.embla__button__svg {
+  width: 40%; /* Adjust icon size if needed */
+  height: 40%;
+}
+
+.embla__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end; /* Center the dots */
+  align-items: center;
+  margin-top: 1rem; /* Add some top margin for spacing */
+}
+
+.embla__dot {
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  border: none; /* Remove the border */
+  width: 1rem; /* Smaller size */
+  height: 1rem;
+  border-radius: 50%;
+  margin: 0.3rem; /* Spacing between dots */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Add smooth transitions */
+}
+
+.embla__dot:hover {
+  transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+.embla__dot--selected {
+  background-color: #f2b705; /*  A nice golden yellow to match the logo */
+  transform: scale(1.2); /* Keep the selected dot enlarged */
+}
+
+/* Remove the extra box-shadow */
+.embla__dot:after {
+  box-shadow: none;
+  content: none; /* Hide the inner circle */
+}
+
+.embla__dot--selected:after {
+  box-shadow: none;
+  content: none;
+}

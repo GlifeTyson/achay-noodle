@@ -1,8 +1,11 @@
 "use client";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { classNames } from "@/utils/common";
+import { ChevronRight, Globe } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import CustomPopover from "../module/ui/CustomPopover";
 
 const items = [
   {
@@ -22,8 +25,14 @@ const items = [
     label: "Liên hệ",
   },
 ];
+
+const flags = [
+  { flagUrl: "/assets/flags/vn.png", language: "Tiếng Việt" },
+  { flagUrl: "/assets/flags/us.png", language: "English" },
+];
 const Header = () => {
   const scrollToSection = useScrollToSection();
+  const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll();
   const firstTwoItems = items.slice(0, 2);
   const lastTwoItems = items.slice(2, 3);
@@ -64,7 +73,7 @@ const Header = () => {
             ))}
           </div>
           <div className="w-40" />
-          <div className="w-1/2 flex justify-start pl-3 gap-3 md:justify-start md:gap-10 md:pl-20">
+          <div className="w-1/2 flex justify-center items-center gap-3 md:justify-start md:gap-10 md:pl-20">
             {lastTwoItems.map((item) => (
               <li key={item.id}>
                 <button
@@ -77,6 +86,49 @@ const Header = () => {
                 </button>
               </li>
             ))}
+            <CustomPopover
+              wrapperClassName="w-50 rounded-lg py-0 mt-4"
+              childrenClassName="px-0 py-0"
+              label={
+                <div
+                  className="w-11 h-7 border border-gray-400 rounded flex items-center justify-center"
+                  onClick={() => {
+                    setExpanded(!expanded);
+                  }}
+                >
+                  <Globe size={20} />
+                  <ChevronRight
+                    className={classNames({
+                      "transition duration-300": true,
+                      "rotate-90": expanded,
+                    })}
+                    size={16}
+                  />
+                </div>
+              }
+            >
+              <div className="flex flex-col justify-center items-center">
+                {flags.map((flag, index) => (
+                  <button
+                    key={index}
+                    className="flex justify-start gap-2 items-center px-2 py-3 rounded-2xl w-full"
+                  >
+                    <div className="relative w-10 h-7">
+                      <Image
+                        fill
+                        alt="flag"
+                        src={flag.flagUrl}
+                        className="object-contain size-full"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                    <span className="text-sm text-playfair">
+                      {flag.language}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </CustomPopover>
           </div>
         </ul>
       </nav>

@@ -10,7 +10,6 @@ const HomeIndex = () => {
       <Landing />
       <Menu />
       <Member />
-      {/* <Contact /> */}
     </div>
   );
 };

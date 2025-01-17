@@ -1,8 +1,13 @@
 "use client";
 import React from "react";
-import ImageSlider from "@/components/module/ui/ImageSlider";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { imageUrls } from "@/utils/constants";
+import { EmblaOptionsType } from "embla-carousel";
+import "@/components/module/ui/EmblaCarousel/embla.css";
+import EmblaCarousel from "@/components/module/ui/EmblaCarousel/EmblaCarousel";
+// import ImageSlider from "@/components/module/ui/ImageSlider";
 
+const OPTIONS: EmblaOptionsType = { loop: true };
 const content = {
   title: "Tiệm mì A Chảy",
   since: "Since 2025",
@@ -12,19 +17,12 @@ const content = {
     " văn hóa ẩm thực”.",
 };
 
-const imageUrls = [
-  "/assets/1.2.webp",
-  "/assets/1.3.webp",
-  "/assets/1.4.webp",
-  "/assets/1.5.webp",
-  "/assets/1.6.webp",
-];
 const variants = {
   visible: {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 1, // Stagger children by .3 seconds
+      staggerChildren: 1, // Stagger children by 1 seconds
     },
   },
   hidden: {
@@ -68,8 +66,8 @@ const Landing = () => {
         style={{ backgroundImage: "url('/assets/landing.jpg')" }}
       />
       <div className="absolute bg-black/40 w-full h-full rounded-b-full" />
-      <div className="relative flex flex-col gap-5 w-full max-w-5xl mx-auto h-full pt-[30vh] md:pt-[20vh] px-10 text-center">
-        <div className="pt-0 md:pt-10">
+      <div className="relative flex flex-col gap-5 w-full max-w-5xl mx-auto h-full pt-[20vh] px-10 text-center">
+        <div>
           <motion.h1
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -101,7 +99,8 @@ const Landing = () => {
           </motion.p>
         </div>
         <div className="mt-0 md:mt-10 w-full h-full mx-auto">
-          <ImageSlider imageUrls={imageUrls} />
+          {/* <ImageSlider imageUrls={imageUrls} /> */}
+          <EmblaCarousel imageUrls={imageUrls} options={OPTIONS} />
         </div>
       </div>
     </section>
