@@ -9,13 +9,16 @@ import CustomPopover from "@/components/module/ui/CustomPopover";
 import { flags, headerItems } from "@/utils/constants";
 
 const Header = () => {
-  const scrollToSection = useScrollToSection();
+  const { scrollToSection, headerRef, currentSection } = useScrollToSection();
   const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll();
   const firstTwoItems = headerItems.slice(0, 2);
   const lastTwoItems = headerItems.slice(2, 3);
   return (
-    <header className="fixed top-0 left-0 right-0 bg-flour/90 border border-flour rounded-b-3xl z-10 shadow-2xl text-playfair">
+    <header
+      ref={headerRef}
+      className="fixed top-0 left-0 right-0 bg-flour/90 border border-flour rounded-b-3xl z-10 shadow-2xl text-playfair"
+    >
       <motion.div
         className="absolute top-0 left-0 right-0 h-1 bg-primary/70"
         style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
@@ -41,7 +44,12 @@ const Header = () => {
               <li key={item.id}>
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className="hover:transition hover:duration-500 hover:ease-out md:hover:scale-125"
+                  className={classNames({
+                    "hover:transition hover:duration-500 hover:ease-out md:hover:scale-125":
+                      true,
+                    "transition duration-500 scale-125":
+                      currentSection === item.id,
+                  })}
                 >
                   <span className="font-semibold md:font-bold">
                     {item.label}
@@ -56,7 +64,12 @@ const Header = () => {
               <li key={item.id}>
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className="hover:transition hover:duration-500 hover:ease-out md:hover:scale-125"
+                  className={classNames({
+                    "hover:transition hover:duration-500 hover:ease-out md:hover:scale-125":
+                      true,
+                    "transition duration-500 scale-125":
+                      currentSection === item.id,
+                  })}
                 >
                   <span className="font-semibold md:font-bold">
                     {item.label}

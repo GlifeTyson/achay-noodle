@@ -10,7 +10,7 @@ const Menu = () => {
     <section id="menu">
       <div className="w-full flex flex-col gap-5 md:gap-40 h-fit md:h-[95vh] bg-flour px-6 pt-20 pb-10 md:px-8">
         <div className="flex flex-col md:flex-row items-start justify-center gap-5 md:justify-between">
-          <h1 className="text-playfair text-5xl font-medium">
+          <h1 id="menuTitle" className="text-playfair text-5xl font-medium">
             {content.title}
           </h1>
           <button className="border-2 border-gray-300/90 shadow-xl py-2 px-4 rounded-3xl text-playfair font-medium">
@@ -26,7 +26,7 @@ const Menu = () => {
                 alt="image"
                 src="/assets/noodles/wonton.png"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain size-full"
+                className="object-contain"
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">
@@ -41,7 +41,7 @@ const Menu = () => {
                 alt="image"
                 src="/assets/noodles/wonton-pork-noodle.webp"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover size-full"
+                className="object-cover"
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">
@@ -56,7 +56,7 @@ const Menu = () => {
                 alt="image"
                 src="/assets/noodles/extra-noodle.png"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain size-full"
+                className="object-contain"
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">

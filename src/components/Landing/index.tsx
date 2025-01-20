@@ -62,6 +62,7 @@ const Landing = () => {
       <div className="relative flex flex-col gap-5 w-full max-w-5xl mx-auto h-full pt-[20vh] px-10 text-center">
         <div>
           <motion.h1
+            id="landingTitle"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
