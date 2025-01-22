@@ -3,7 +3,7 @@ import { useCallback, useRef, useEffect, useState } from "react";
 export const useScrollToSection = () => {
   const headerRef = useRef<HTMLElement | null>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
-  const [currentSection, setCurrentSection] = useState("");
+  const [currentSection, setCurrentSection] = useState("introduce");
 
   useEffect(() => {
     setHeaderHeight(headerRef.current?.offsetHeight || 0);
