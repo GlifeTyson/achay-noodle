@@ -20,6 +20,10 @@ export const headerItems = [
     label: "Thành viên",
   },
   {
+    id: "discover",
+    label: "Khám phá",
+  },
+  {
     id: "contact",
     label: "Liên hệ",
   },

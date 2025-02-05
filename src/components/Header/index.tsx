@@ -13,7 +13,7 @@ const Header = () => {
   const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll();
   const firstTwoItems = headerItems.slice(0, 2);
-  const lastTwoItems = headerItems.slice(2, 3);
+  const lastTwoItems = headerItems.slice(2, 4);
   return (
     <header
       ref={headerRef}
@@ -51,7 +51,7 @@ const Header = () => {
                       currentSection === item.id,
                   })}
                 >
-                  <span className="font-semibold md:font-bold">
+                  <span className="text-xs md:text-base font-semibold md:font-bold">
                     {item.label}
                   </span>
                 </button>
@@ -71,7 +71,7 @@ const Header = () => {
                       currentSection === item.id,
                   })}
                 >
-                  <span className="font-semibold md:font-bold">
+                  <span className="text-xs md:text-base font-semibold md:font-bold">
                     {item.label}
                   </span>
                 </button>
@@ -87,13 +87,12 @@ const Header = () => {
                     setExpanded(!expanded);
                   }}
                 >
-                  <Globe size={20} />
+                  <Globe className="size-4 md:size-5" />
                   <ChevronRight
                     className={classNames({
-                      "transition duration-300": true,
+                      "transition duration-300 size-4 md:size-5": true,
                       "rotate-90": expanded,
                     })}
-                    size={16}
                   />
                 </div>
               }

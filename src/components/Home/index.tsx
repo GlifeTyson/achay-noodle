@@ -3,6 +3,7 @@ import Member from "@/components/Member";
 import Menu from "@/components/Menu";
 // import Contact from "@/components/Contact";
 import Landing from "@/components/Landing";
+import Discover from "@/components/Discover";
 
 const HomeIndex = () => {
   return (
@@ -10,6 +11,7 @@ const HomeIndex = () => {
       <Landing />
       <Menu />
       <Member />
+      <Discover />
     </div>
   );
 };
