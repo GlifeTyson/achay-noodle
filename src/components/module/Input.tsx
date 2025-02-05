@@ -284,7 +284,7 @@ const Input = React.forwardRef(
                   !className || !className.includes("border-"),
                 "pr-6 pl-12": !!currency || type == "search",
                 "pl-11": !!icon,
-                "checked:accent-primary-400 checked:hover:accent-primary-400 focus:accent-primary-400 focus:outline-none checked:focus:accent-primary-400 checked:active:accent-primary-400":
+                "checked:accent-yellow-400 checked:hover:accent-yellow-400 focus:accent-yellow-400 focus:outline-none checked:focus:accent-yellow-400 checked:active:accent-yellow-400":
                   true,
                 "transform transition-transform duration-250 ease-in-out":
                   type === "checkbox" || type === "radio",
