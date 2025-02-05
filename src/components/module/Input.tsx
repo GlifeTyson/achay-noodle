@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   ReactNode,
   useEffect,
@@ -55,6 +56,7 @@ const Input = React.forwardRef(
       spellCheck,
       onChange,
       disabled,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       StartComponent,
       EndComponent,
       currency,
@@ -65,6 +67,7 @@ const Input = React.forwardRef(
       labelClassName,
       icon,
       onSearchIconClick,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onClearInput,
       ...rest
     }: InputProps,
