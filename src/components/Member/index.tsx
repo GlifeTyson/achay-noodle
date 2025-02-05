@@ -11,7 +11,22 @@ const Member = () => {
           Member
         </h1>
         <div className="flex w-full justify-center">
-          <Input type="radio" label="Member" labelClassName="mb-0" />
+          <Input
+            id="member"
+            type="radio"
+            label="Member"
+            labelClassName="mb-0"
+            className="text-sm"
+          />
+        </div>
+        <div className="flex w-full justify-center">
+          <Input
+            id="member"
+            type="radio"
+            label="Member"
+            labelClassName="mb-0"
+            className="text-sm"
+          />
         </div>
       </div>
     </section>

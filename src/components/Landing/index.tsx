@@ -28,7 +28,6 @@ const variants = {
 const Landing = () => {
   const { scrollYProgress, scrollY } = useScroll();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [scrollInto, setScrollInto] = React.useState("");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
