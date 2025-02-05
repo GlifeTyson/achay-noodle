@@ -16,7 +16,7 @@ const Member = () => {
             type="radio"
             label="Member"
             labelClassName="mb-0"
-            className="text-sm"
+            className="text-sm h-fit"
           />
         </div>
         <div className="flex w-full justify-center">
@@ -25,7 +25,7 @@ const Member = () => {
             type="radio"
             label="Member"
             labelClassName="mb-0"
-            className="text-sm"
+            className="text-sm h-fit"
           />
         </div>
       </div>
