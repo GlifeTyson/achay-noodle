@@ -68,7 +68,7 @@ import { useCallback, useRef, useEffect, useState } from "react";
 export const useScrollToSection = () => {
   const headerRef = useRef<HTMLElement | null>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
-  const [currentSection, setCurrentSection] = useState("");
+  const [currentSection, setCurrentSection] = useState("introduce");
 
   const getCurrentSection = useCallback(() => {
     const h1Elements = document.querySelectorAll("h1");
@@ -91,12 +91,13 @@ export const useScrollToSection = () => {
       }
     });
 
-    return current || "introduce"; // Default to "introduce" if no section is found
+    return current; // Default to "introduce" if no section is found
   }, [headerHeight]);
 
   useEffect(() => {
     const updateHeaderHeight = () => {
-      setHeaderHeight(headerRef.current?.offsetHeight || 0);
+      if (!headerRef.current) return;
+      setHeaderHeight(headerRef.current?.offsetHeight);
     };
 
     updateHeaderHeight();
@@ -131,7 +132,7 @@ export const useScrollToSection = () => {
           top: offsetPosition,
           behavior: "smooth",
         });
-
+        console.log(sectionId);
         setCurrentSection(sectionId);
       }
     },

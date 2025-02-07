@@ -16,17 +16,21 @@ export const headerItems = [
     label: "Thực đơn",
   },
   {
-    id: "member",
-    label: "Thành viên",
+    id: "reservation",
+    label: "Đặt món ngay",
   },
-  {
-    id: "discover",
-    label: "Khám phá",
-  },
-  {
-    id: "contact",
-    label: "Liên hệ",
-  },
+  // {
+  //   id: "member",
+  //   label: "Thành viên",
+  // },
+  // {
+  //   id: "discover",
+  //   label: "Khám phá",
+  // },
+  // {
+  //   id: "contact",
+  //   label: "Liên hệ",
+  // },
 ];
 
 export const flags = [
