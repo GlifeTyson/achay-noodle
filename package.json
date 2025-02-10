@@ -19,6 +19,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-tiny-popover": "^8.1.4",
+    "sonner": "^1.7.4",
     "swiper": "^11.2.1",
     "tailwind-merge": "^2.6.0"
   },

@@ -1,26 +1,37 @@
 "use client";
 import Button from "@/components/module/Button";
 import Input from "@/components/module/Input";
+import { useToast } from "@/context/ToastContext";
 import { sendEmail } from "@/services/emailjs";
-import { getConfigs } from "@/utils/config";
 import { useState } from "react";
 
 const Form = () => {
+  const toast = useToast();
+
   const [formData, setFormData] = useState({
     user_name: "",
     user_email: "",
     message: "",
   });
 
-  const { serviceId, templateId } = getConfigs();
-
   const handleSubmit = async () => {
-    try {
-      await sendEmail("#form");
-    } catch (error) {
-      alert(error);
-    }
+    const res = sendEmail("#form");
+
+    toast.promise(res, {
+      loadingContent: "Sending...",
+      isSuccess: (data) => data.status === 200 && data.text === "OK",
+      onSuccess: () => {
+        return "An email has been sent to you!, please check your inbox";
+      },
+      onFail: () => {
+        return "Fail occurred, please try again";
+      },
+      onError: (error: any) => {
+        return error.message || "Error occurred, please try again";
+      },
+    });
   };
+
   return (
     <form
       id="form"
@@ -36,12 +47,6 @@ const Form = () => {
             name="user_name"
             labelClassName="text-sm md:text-base"
             className="h-7 md:h-9 text-sm md:text-base"
-            onChange={(value) => {
-              setFormData({
-                ...formData,
-                user_name: value,
-              });
-            }}
           />
         </div>
         <div className="col-span-1">
@@ -51,24 +56,15 @@ const Form = () => {
             name="user_email"
             labelClassName="text-sm md:text-base"
             className="h-7 md:h-9 text-sm md:text-base"
-            onChange={(value) => {
-              setFormData({
-                ...formData,
-                user_email: value,
-              });
-            }}
           />
         </div>
         <div className="col-span-1">
           <Input
             label="Số lượng người"
-            name="number_of_guests"
             type="number"
+            name="number_of_guests"
             labelClassName="text-sm md:text-base"
             className="h-7 md:h-9 text-sm md:text-base"
-            onChange={(e) => {
-              console.log(e);
-            }}
           />
         </div>
         <div className="col-span-1">
@@ -79,9 +75,6 @@ const Form = () => {
               name="date"
               labelClassName="text-sm md:text-base"
               className="h-7 md:h-9 text-sm md:text-base"
-              onChange={(e) => {
-                console.log(e);
-              }}
             />
           </div>
         </div>
@@ -93,9 +86,6 @@ const Form = () => {
               name="time"
               labelClassName="text-sm md:text-base"
               className="h-7 md:h-9 text-sm md:text-base"
-              onChange={(e) => {
-                console.log(e);
-              }}
             />
           </div>
         </div>
