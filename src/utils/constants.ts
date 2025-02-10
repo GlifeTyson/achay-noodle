@@ -46,3 +46,24 @@ export const landingContent = {
     "Chúng tôi mang đến quý khách sự trải nghiệm tuyệt đối từ vị giác đến" +
     " văn hóa ẩm thực”.",
 };
+
+export const contentInfo = {
+  title: "Tiệm mì A Chảy",
+  address: "Chung cư 830, 12A2 Sư Vạn Hạnh, phường 13, quận 10",
+  days1: "Thứ 2 - Thứ 7",
+  days1Day: "Buổi sáng",
+  days1Noon: "Buổi chiều",
+  workingTimeDay: "6-12h",
+  workingTimeNoon: "15h-21h",
+  days2: "Chủ Nhật",
+  days2Day: "Buổi sáng: 6-12h",
+  days2Noon: "Buổi chiều: ",
+  off: "Dừng hoạt động",
+  message: "Gọi điện đặt món, không giao hàng qua Grab",
+  name1: "C.Phượng",
+  phoneNumber1: "09xx-xxx-xxx",
+  noteInfo1: "Sáng thứ 2 - Sáng thứ 7",
+  name2: "C.Phúc",
+  phoneNumber2: "09xx-xxx-xxx",
+  noteInfo2: "Chiều thứ 2 - Chiều thứ 7, Sáng chủ nhật",
+};
