@@ -17,7 +17,7 @@ export const headerItems = [
   },
   {
     id: "reservation",
-    label: "Đặt món ngay",
+    label: "Đặt bàn ngay",
   },
   // {
   //   id: "member",
