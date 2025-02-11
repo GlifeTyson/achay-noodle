@@ -48,7 +48,7 @@ function getVariantClasses(
 
     case "outline":
       bgClassName =
-        "bg-white border border-darkFlour hover:bg-darkFlour hover:border-darkFlour text-darkFlour hover:text-white font-medium";
+        "bg-white border border-darkerFlour hover:bg-darkerFlour hover:border-darkerFlour text-darkerFlour hover:text-white font-medium";
       spinClass = "ml-3 border-primary-500";
       break;
 

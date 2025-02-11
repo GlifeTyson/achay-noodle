@@ -27,7 +27,7 @@ export interface InputProps
   currency?: string;
   label?: string | ReactNode;
   required?: boolean;
-  min?: number;
+  min?: number | string;
   max?: number;
   labelClassName?: string;
   icon?: ReactNode;

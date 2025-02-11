@@ -32,6 +32,7 @@ export default {
         dough: "#efebda",
         flour: "#fffceb",
         darkFlour: "#f5f0d7",
+        darkerFlour: "#b5a67a",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

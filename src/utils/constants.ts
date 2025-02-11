@@ -67,3 +67,10 @@ export const contentInfo = {
   phoneNumber2: "09xx-xxx-xxx",
   noteInfo2: "Chiều thứ 2 - Chiều thứ 7, Sáng chủ nhật",
 };
+
+export const contentModal = {
+  label: "Xác nhận đặt bàn",
+  content1: "Cảm ơn bạn đã đặt bàn tại tiệm mì của chúng tôi",
+  content2: "Vui lòng kiểm tra email để xem tình trạng đặt bàn",
+  button: "Check Email",
+};
