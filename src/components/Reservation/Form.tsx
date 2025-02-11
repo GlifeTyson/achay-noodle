@@ -6,19 +6,23 @@ import { useToast } from "@/context/ToastContext";
 import { sendEmail } from "@/services/emailjs";
 import { contentModal } from "@/utils/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 const Form = () => {
+  const toast = useToast();
+  const [currentTime, setCurrentTime] = useState("");
+  const [open, setOpenModal] = useState(false);
   const today = new Date().toISOString().split("T")[0];
+
   const formMethods = useForm({
     mode: "onChange",
     defaultValues: {
       user_name: "",
       user_email: "",
       number_of_guests: 1,
-      date: new Date(),
-      time: "12:00",
+      date: new Date().toISOString().split("T")[0],
+      time: "07:00",
     },
     resolver: zodResolver(
       z.object({
@@ -43,15 +47,6 @@ const Form = () => {
     handleSubmit,
     formState: { errors, isDirty },
   } = formMethods;
-  const toast = useToast();
-
-  const [formData, setFormData] = useState({
-    user_name: "",
-    user_email: "",
-    message: "",
-  });
-
-  const [open, setOpenModal] = useState(false);
 
   const onSubmit = async () => {
     const res = sendEmail("#form");
@@ -73,6 +68,13 @@ const Form = () => {
     });
   };
 
+  useEffect(() => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    setCurrentTime(`${hours}:${minutes}`);
+  }, []);
+
   return (
     <form
       id="form"
@@ -87,12 +89,13 @@ const Form = () => {
             name="user_name"
             render={({ field: { value, onChange } }) => (
               <Input
-                value={value}
+                required
                 label="Tên"
                 type="text"
                 name="user_name"
-                labelClassName="text-sm md:text-base"
                 className="w-full h-7 md:h-9 text-sm md:text-base"
+                defaultValue={value}
+                labelClassName="text-sm md:text-base"
                 errorMessage={errors.user_name?.message}
                 onChange={onChange}
               />
@@ -105,7 +108,8 @@ const Form = () => {
             name="user_email"
             render={({ field: { value, onChange } }) => (
               <Input
-                value={value}
+                required
+                defaultValue={value}
                 label="Email"
                 type="text"
                 name="user_email"
@@ -123,7 +127,8 @@ const Form = () => {
             name="number_of_guests"
             render={({ field: { value, onChange } }) => (
               <Input
-                value={value}
+                required
+                defaultValue={value}
                 label="Số lượng người"
                 type="number"
                 name="number_of_guests"
@@ -139,31 +144,50 @@ const Form = () => {
         </div>
         <div className="col-span-1">
           <div className="flex flex-col gap-2 md:gap-2.5">
-            <span className="text-base text-gray-700 font-medium">Ngày</span>
-            <Input
-              type="date"
+            <Controller
+              control={control}
               name="date"
-              min={today}
-              labelClassName="text-sm md:text-base"
-              className="w-full h-7 md:h-9 text-sm md:text-base"
+              render={({ field: { value, onChange } }) => (
+                <Input
+                  required
+                  label="Ngày"
+                  type="date"
+                  name="date"
+                  defaultValue={value}
+                  min={today}
+                  labelClassName="text-sm md:text-base"
+                  className="w-full h-7 md:h-9 text-sm md:text-base"
+                />
+              )}
             />
           </div>
         </div>
         <div className="col-span-1">
           <div className="flex flex-col gap-2 md:gap-2.5">
-            <span className="text-base text-gray-700 font-medium">Ngày</span>
-            <Input
-              type="time"
+            <Controller
+              control={control}
               name="time"
-              labelClassName="text-sm md:text-base"
-              className="w-full h-7 md:h-9 text-sm md:text-base"
+              render={({ field: { value, onChange } }) => (
+                <>
+                  <Input
+                    required
+                    defaultValue={value}
+                    label="Thời gian"
+                    type="time"
+                    name="time"
+                    labelClassName="text-sm md:text-base"
+                    className="w-full h-7 md:h-9 text-sm md:text-base"
+                    onChange={onChange}
+                  />
+                </>
+              )}
             />
           </div>
         </div>
         <div className="col-span-1 md:col-span-2">
           <Button
             variant="outline"
-            disabled={!isDirty}
+            // disabled={!isDirty}
             className="w-full h-9 rounded-lg"
             onClick={handleSubmit(onSubmit)}
           >
