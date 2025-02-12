@@ -28,5 +28,10 @@
   "phone1": "09xx-xxx-xxx",
   "member2": "C.Phúc",
   "rangeOpen1": "Monday morning - Saturday morning",
-  "rangeOpen2": "Monday afternoon - Saturday afternoon, Sunday morning"
+  "rangeOpen2": "Monday afternoon - Saturday afternoon, Sunday morning",
+  "name": "Name",
+  "email": "Email",
+  "number_of_guest": "Number of guest",
+  "date": "Date",
+  "time": "Time"
 }

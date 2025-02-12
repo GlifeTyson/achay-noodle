@@ -2,8 +2,8 @@
   "hello": "Xin chào",
   "headerTitle1": "Giới thiệu",
   "headerTitle2": "Thực đơn",
-  "headerTitle3": "Đặt bàn",
-  "landingTitle": "A Chay - Nhà hàng Mì",
+  "headerTitle3": "Đặt chỗ",
+  "landingTitle": "Tiệm mì A Chảy",
   "landingSince": "Từ năm 2025",
   "landingDescribe1": "Với phương châm: 'Nơi ẩm thực Hồng Kông được tôn vinh và chăm chút.'",
   "landingDescribe2": "Chúng tôi mang đến cho khách hàng trải nghiệm tuyệt vời từ vị giác đến",
@@ -13,7 +13,7 @@
   "menuItem1": "Hoành thánh",
   "menuItem2": "Mì hoành thánh",
   "menuItem3": "Mì tươi",
-  "booking": "Đặt chỗ",
+  "booking": "Đặt chỗ ngay",
   "openingTime": "Giờ mở cửa",
   "address": "Chung cư 830, 12A2 Đường Sư Vạn Hạnh, Phường 13, Quận 10",
   "dayofweek": "Thứ Hai - Thứ Bảy",
@@ -28,5 +28,10 @@
   "phone1": "09xx-xxx-xxx",
   "member2": "Chị Phúc",
   "rangeOpen1": "Sáng Thứ Hai - Sáng Thứ Bảy",
-  "rangeOpen2": "Chiều Thứ Hai - Chiều Thứ Bảy, Sáng Chủ Nhật"
+  "rangeOpen2": "Chiều Thứ Hai - Chiều Thứ Bảy, Sáng Chủ Nhật",
+  "name": "Tên",
+  "email": "Email",
+  "number_of_guest": "Số lượng khách",
+  "date": "Ngày",
+  "time": "Thời gian"
 }

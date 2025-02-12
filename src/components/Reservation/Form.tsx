@@ -14,6 +14,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const initValue = {
   user_name: "",
@@ -24,6 +25,8 @@ const initValue = {
 };
 const Form = () => {
   const toast = useToast();
+  const { t } = useTranslation();
+
   const [currentTime, setCurrentTime] = useState("");
   const [open, setOpenModal] = useState(false);
   const today = new Date().toISOString().split("T")[0];
@@ -74,7 +77,7 @@ const Form = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center justify-center gap-5 w-full h-full p-4 md:p-6 border border-black rounded-md text-playfair"
     >
-      <span className="text-xl md:text-3xl font-medium">Đặt bàn ngay</span>
+      <span className="text-xl md:text-3xl font-medium">{t("booking")}</span>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="col-span-1">
           <Controller
@@ -83,7 +86,7 @@ const Form = () => {
             render={({ field: { value, onChange } }) => (
               <Input
                 required
-                label="Tên"
+                label={t("name")}
                 type="text"
                 name="user_name"
                 className="w-full h-7 md:h-9 text-sm md:text-base"
@@ -103,7 +106,7 @@ const Form = () => {
               <Input
                 required
                 defaultValue={value}
-                label="Email"
+                label={t("email")}
                 type="text"
                 name="user_email"
                 labelClassName="text-sm md:text-base"
@@ -122,7 +125,7 @@ const Form = () => {
               <Input
                 required
                 defaultValue={value}
-                label="Số lượng người"
+                label={t("number_of_guest")}
                 type="number"
                 name="number_of_guests"
                 min={0}
@@ -143,7 +146,7 @@ const Form = () => {
               render={({ field: { value, onChange } }) => (
                 <Input
                   required
-                  label="Ngày"
+                  label={t("date")}
                   type="date"
                   name="date"
                   defaultValue={value}
@@ -165,7 +168,7 @@ const Form = () => {
                   <Input
                     required
                     defaultValue={value}
-                    label="Thời gian"
+                    label={t("time")}
                     type="time"
                     name="time"
                     labelClassName="text-sm md:text-base"
@@ -184,7 +187,7 @@ const Form = () => {
             className="w-full h-9 rounded-lg"
             onClick={handleSubmit(onSubmit)}
           >
-            Đặt bàn
+            {t("headerTitle3")}
           </Button>
         </div>
       </div>

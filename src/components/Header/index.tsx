@@ -62,7 +62,7 @@ const Header = () => {
             ))}
           </div>
           <div className="w-40" />
-          <div className="w-1/2 flex justify-center items-center gap-3 md:justify-start md:gap-10 md:pl-20">
+          <div className="w-1/2 flex justify-center items-center gap-5 md:justify-between md:gap-10 md:pl-20">
             {lastItem.map((item, index) => (
               <li key={item.id}>
                 <button
@@ -81,11 +81,11 @@ const Header = () => {
               </li>
             ))}
             <CustomPopover
-              wrapperClassName="w-50 rounded-lg py-0 mt-4"
+              wrapperClassName="w-50 py-0 mt-4"
               childrenClassName="px-0 py-0"
               label={
                 <div
-                  className="w-11 h-7 border border-gray-400 rounded flex items-center justify-center"
+                  className="w-11 h-7 border border-gray-400 rounded flex items-center p-2 justify-center"
                   onClick={() => {
                     setExpanded(!expanded);
                   }}
@@ -104,7 +104,12 @@ const Header = () => {
                 {flags.map((flag, index) => (
                   <button
                     key={index}
-                    className="flex justify-start gap-2 items-center px-2 py-3 rounded-2xl w-full"
+                    className={classNames({
+                      "flex justify-start gap-2 items-center px-2 py-3 rounded w-full hover:bg-gray-600/30":
+                        true,
+                      "bg-gray-600/40 hover:bg-gray-600/40":
+                        i18n.language === flag.lang,
+                    })}
                     onClick={() => {
                       i18n.changeLanguage(flag.lang);
                     }}

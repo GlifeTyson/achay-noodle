@@ -1,11 +1,14 @@
+import { useTranslation } from "react-i18next";
 import Form from "./Form";
 import Info from "./Info";
 
 const Reservation = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="reservation" className="bg-flour px-6">
       <h1 id="reservation" className="text-playfair text-5xl font-medium">
-        Đặt bàn
+        {t("headerTitle3")}
       </h1>
       <div className="w-full h-full md:h-screen p-5 md:p-10">
         <div className="flex flex-col gap-5 w-full h-full md:flex-row">
