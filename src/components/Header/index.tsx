@@ -1,19 +1,22 @@
 "use client";
+import CustomPopover from "@/components/module/ui/CustomPopover";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { classNames } from "@/utils/common";
+import { flags, headerItems } from "@/utils/constants";
 import { ChevronRight, Globe } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import Image from "next/image";
-import React, { useState } from "react";
-import CustomPopover from "@/components/module/ui/CustomPopover";
-import { flags, headerItems } from "@/utils/constants";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { scrollToSection, headerRef, currentSection } = useScrollToSection();
   const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll();
   const firstTwoItems = headerItems.slice(0, 2);
-  const lastTwoItems = headerItems.slice(2, 4);
+  const lastItem = headerItems.slice(2, 4);
+  const { t, i18n } = useTranslation();
+
   return (
     <header
       ref={headerRef}
@@ -40,7 +43,7 @@ const Header = () => {
         </div>
         <ul className="flex justify-center items-center py-4 text-xs md:text-base">
           <div className="w-1/2 flex justify-center gap-3 md:justify-end md:gap-10 md:pr-20">
-            {firstTwoItems.map((item) => (
+            {firstTwoItems.map((item, index) => (
               <li key={item.id}>
                 <button
                   onClick={() => scrollToSection(item.id)}
@@ -52,7 +55,7 @@ const Header = () => {
                   })}
                 >
                   <span className="text-xs md:text-base font-semibold md:font-bold">
-                    {item.label}
+                    {t(`headerTitle${index + 1}`)}
                   </span>
                 </button>
               </li>
@@ -60,7 +63,7 @@ const Header = () => {
           </div>
           <div className="w-40" />
           <div className="w-1/2 flex justify-center items-center gap-3 md:justify-start md:gap-10 md:pl-20">
-            {lastTwoItems.map((item) => (
+            {lastItem.map((item, index) => (
               <li key={item.id}>
                 <button
                   onClick={() => scrollToSection(item.id)}
@@ -72,7 +75,7 @@ const Header = () => {
                   })}
                 >
                   <span className="text-xs md:text-base font-semibold md:font-bold">
-                    {item.label}
+                    {t(`headerTitle${index + 3}`)}
                   </span>
                 </button>
               </li>
@@ -102,6 +105,9 @@ const Header = () => {
                   <button
                     key={index}
                     className="flex justify-start gap-2 items-center px-2 py-3 rounded-2xl w-full"
+                    onClick={() => {
+                      i18n.changeLanguage(flag.lang);
+                    }}
                   >
                     <div className="relative w-10 h-7">
                       <Image

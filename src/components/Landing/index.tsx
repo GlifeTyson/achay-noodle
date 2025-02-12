@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { imageUrls, landingContent } from "@/utils/constants";
-import { EmblaOptionsType } from "embla-carousel";
 import EmblaCarousel from "@/components/module/ui/EmblaCarousel/EmblaCarousel";
 import "@/components/module/ui/EmblaCarousel/embla.css";
+import { imageUrls } from "@/utils/constants";
+import { EmblaOptionsType } from "embla-carousel";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 // import ImageSlider from "@/components/module/ui/ImageSlider";
 
 const optionsEmblaCarousel: EmblaOptionsType = { loop: true };
@@ -27,9 +28,8 @@ const variants = {
 
 const Landing = () => {
   const { scrollYProgress, scrollY } = useScroll();
-
   const [scrollInto, setScrollInto] = React.useState("");
-
+  const { t } = useTranslation();
   useMotionValueEvent(scrollY, "change", (latest) => {
     // console.log("Page scroll: ", latest);
     if (latest > 1100) {
@@ -70,7 +70,7 @@ const Landing = () => {
             }}
             className="text-playfair text-3xl md:text-5xl font-extrabold text-white"
           >
-            {landingContent.title}
+            {t("landingTitle")}
           </motion.h1>
           <motion.h2
             initial={{ transform: "translateX(-200px)" }}
@@ -78,7 +78,7 @@ const Landing = () => {
             transition={{ type: "spring", visualDuration: 0.4, bounce: 0.5 }}
             className="text-playfair text-2xl md:text-3xl font-extrabold text-white"
           >
-            {landingContent.since}
+            {t("landingSince")}
           </motion.h2>
         </div>
         <div>
@@ -88,7 +88,9 @@ const Landing = () => {
             animate={"visible"}
             className="text-playfair text-white text-sm md:text-2xl"
           >
-            {landingContent.describe}
+            {t("landingDescribe1")}
+            {t("landingDescribe2")}
+            {t("landingDescribe3")}
           </motion.p>
         </div>
         <div className="mt-0 md:mt-10 w-full h-full mx-auto">

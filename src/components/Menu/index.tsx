@@ -1,20 +1,23 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import { useTranslation } from "react-i18next";
 const content = {
   title: "Best seller tại quán",
   imageUrls: [],
   buttonContent: "Khám phá",
 };
 const Menu = () => {
+  const { t } = useTranslation();
   return (
     <section id="menu">
       <div className="w-full flex flex-col gap-5 md:gap-40 h-fit md:h-[95vh] bg-flour px-6 pt-20 pb-10 md:px-8">
         <div className="flex flex-col md:flex-row items-start justify-center gap-5 md:justify-between">
           <h1 id="menu" className="text-playfair text-5xl font-medium">
-            {content.title}
+            {t("menuTitle")}
           </h1>
           <button className="border-2 border-gray-700/90 shadow-xl py-2 px-4 rounded-3xl text-playfair font-medium">
-            <span>{content.buttonContent}</span>
+            <span>{t("explore")}</span>
           </button>
         </div>
         <div className="flex flex-col w-full md:flex-row gap-5 md:gap-20 justify-center items-center">
@@ -30,7 +33,7 @@ const Menu = () => {
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">
-              Hoành thánh
+              {t("menuItem1")}
             </span>
           </div>
           <div className="flex flex-col items-center border-2 md:border-4 rounded-3xl py-2 md:mb-20">
@@ -45,7 +48,7 @@ const Menu = () => {
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">
-              Mì hoành thánh
+              {t("menuItem2")}
             </span>
           </div>
           <div className="flex flex-col items-center border-2 md:border-4 rounded-3xl py-2 md:mt-20">
@@ -60,7 +63,7 @@ const Menu = () => {
               />
             </div>
             <span className="text-playfair md:text-2xl md:font-medium">
-              Mì tươi
+              {t("menuItem3")}
             </span>
           </div>
         </div>

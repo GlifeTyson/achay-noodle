@@ -19,23 +19,11 @@ export const headerItems = [
     id: "reservation",
     label: "Đặt bàn ngay",
   },
-  // {
-  //   id: "member",
-  //   label: "Thành viên",
-  // },
-  // {
-  //   id: "discover",
-  //   label: "Khám phá",
-  // },
-  // {
-  //   id: "contact",
-  //   label: "Liên hệ",
-  // },
 ];
 
 export const flags = [
-  { flagUrl: "/assets/flags/vn.png", language: "Tiếng Việt" },
-  { flagUrl: "/assets/flags/us.png", language: "English" },
+  { flagUrl: "/assets/flags/vn.png", language: "Tiếng Việt", lang: "vi" },
+  { flagUrl: "/assets/flags/us.png", language: "English", lang: "en" },
 ];
 
 export const landingContent = {
