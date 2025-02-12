@@ -5,10 +5,22 @@ import Modal from "@/components/module/Modal";
 import { useToast } from "@/context/ToastContext";
 import { sendEmail } from "@/services/emailjs";
 import { contentModal } from "@/utils/constants";
+import { formSchema } from "@/validator/emailForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+const initValue = {
+  user_name: "",
+  user_email: "",
+  number_of_guests: 1,
+  date: new Date().toISOString().split("T")[0],
+  time: "07:00",
+};
 const Form = () => {
   const toast = useToast();
   const [currentTime, setCurrentTime] = useState("");
@@ -17,28 +29,8 @@ const Form = () => {
 
   const formMethods = useForm({
     mode: "onChange",
-    defaultValues: {
-      user_name: "",
-      user_email: "",
-      number_of_guests: 1,
-      date: new Date().toISOString().split("T")[0],
-      time: "07:00",
-    },
-    resolver: zodResolver(
-      z.object({
-        user_name: z.string().min(1, "Không được để trống tên"),
-        user_email: z
-          .string()
-          .email("Email không đúng định dạng")
-          .min(1, "Không được để trống email"),
-        number_of_guests: z
-          .number()
-          .min(1, "Số lượng người phải lớn hơn 1")
-          .max(20, "Số lượng người phải bé hơn 20"),
-        date: z.date(),
-        time: z.string().min(1),
-      })
-    ),
+    defaultValues: initValue,
+    resolver: zodResolver(formSchema),
   });
 
   const {
@@ -48,9 +40,9 @@ const Form = () => {
     formState: { errors, isDirty },
   } = formMethods;
 
-  const onSubmit = async () => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const res = sendEmail("#form");
-
+    console.log(data, "data");
     toast.promise(res, {
       loadingContent: "Sending...",
       isSuccess: (data) => data.status === 200 && data.text === "OK",

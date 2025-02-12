@@ -17,12 +17,12 @@ const initEmailJS = () => {
 const sendEmail = async (templateParams: string | HTMLFormElement) => {
   try {
     const response = await emailjs.sendForm(
-      config.serviceId, // SERVICE_ID từ EmailJS
-      config.templateId, // TEMPLATE_ID từ EmailJS
+      config.serviceId, // SERVICE_ID from EmailJS
+      config.templateId, // TEMPLATE_ID from EmailJS
       templateParams,
-      config.publicKey // PUBLIC_KEY từ EmailJS
+      config.publicKey // PUBLIC_KEY from EmailJS
     );
-    console.log("Email sent successfully!", response);
+
     return response;
   } catch (error) {
     console.error("Failed to send email", error);
