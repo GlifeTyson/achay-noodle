@@ -1,139 +1,86 @@
-// import { useCallback, useRef, useEffect, useState } from "react";
-
-// export const useScrollToSection = () => {
-//   const headerRef = useRef<HTMLElement | null>(null);
-//   const [headerHeight, setHeaderHeight] = useState(0);
-//   const [currentSection, setCurrentSection] = useState("");
-
-//   const getCurrentSection = useCallback(() => {
-//     const sections = document.querySelectorAll("section[id]");
-//     const scrollPosition = window.pageYOffset + headerHeight;
-
-//     let current = "";
-//     sections.forEach((section) => {
-//       const sectionEl = section as HTMLElement;
-//       if (sectionEl) {
-//         const sectionTop = sectionEl.offsetTop;
-//         const sectionHeight = sectionEl.offsetHeight;
-
-//         if (
-//           scrollPosition >= sectionTop &&
-//           scrollPosition < sectionTop + sectionHeight
-//         ) {
-//           current = section.id;
-//         }
-//       }
-//     });
-
-//     return current || "introduce"; // Default to "introduce" if no section is found
-//   }, [headerHeight]);
-
-//   useEffect(() => {
-//     setHeaderHeight(headerRef.current?.offsetHeight || 0);
-
-//     const handleScroll = () => {
-//       setCurrentSection(getCurrentSection());
-//     };
-
-//     // Set initial current section
-//     setCurrentSection(getCurrentSection());
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, [headerHeight, getCurrentSection]);
-
-//   const scrollToSection = useCallback(
-//     (sectionId: string) => {
-//       const element = document.getElementById(sectionId);
-
-//       if (element) {
-//         const elementPosition = element.offsetTop;
-//         const offsetPosition = elementPosition - headerHeight;
-//         window.scrollBy({
-//           top: offsetPosition - window.pageYOffset,
-//           behavior: "smooth",
-//         });
-
-//         setCurrentSection(sectionId);
-//       }
-//     },
-//     [headerHeight]
-//   );
-
-//   console.log(currentSection, "currentSection");
-//   return { scrollToSection, headerRef, currentSection };
-// };
-import { useCallback, useRef, useEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 export const useScrollToSection = () => {
   const headerRef = useRef<HTMLElement | null>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
-  const [currentSection, setCurrentSection] = useState("introduce");
+  const [currentSection, setCurrentSection] = useState("");
+
+  useLayoutEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, []);
 
   const getCurrentSection = useCallback(() => {
-    const h1Elements = document.querySelectorAll("h1");
+    const sections = document.querySelectorAll("section[id]");
     const scrollPosition = window.pageYOffset + headerHeight;
 
     let current = "";
-    h1Elements.forEach((h1) => {
-      const h1El = h1 as HTMLElement;
-      if (h1El) {
-        const sectionTop = h1El.offsetTop;
-        const nextH1 = h1El.nextElementSibling as HTMLElement;
-        const sectionBottom = nextH1
-          ? nextH1.offsetTop
-          : document.body.scrollHeight;
+    sections.forEach((section) => {
+      const sectionEl = section as HTMLElement;
+      if (sectionEl) {
+        const sectionTop = sectionEl.offsetTop;
+        const sectionHeight = sectionEl.offsetHeight;
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          current =
-            h1El.id || h1El.innerText.toLowerCase().replace(/\s+/g, "-");
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionTop + sectionHeight
+        ) {
+          current = section.id;
         }
       }
     });
 
-    return current; // Default to "introduce" if no section is found
+    return current || "introduce"; // Default to "introduce" if no section is found
   }, [headerHeight]);
 
-  useEffect(() => {
-    const updateHeaderHeight = () => {
-      if (!headerRef.current) return;
-      setHeaderHeight(headerRef.current?.offsetHeight);
-    };
-
-    updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
+  useLayoutEffect(() => {
+    let scrollTimeout: NodeJS.Timeout | null = null;
 
     const handleScroll = () => {
-      setCurrentSection(getCurrentSection());
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(() => {
+        setCurrentSection(getCurrentSection());
+      }, 150); // Chờ 150ms sau khi scroll kết thúc
     };
-
-    // Set initial current section
-    setCurrentSection(getCurrentSection());
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", updateHeaderHeight);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
     };
   }, [getCurrentSection]);
 
   const scrollToSection = useCallback(
     (sectionId: string) => {
-      const h1Element =
-        document.querySelector(`h1#${sectionId}`) ||
-        (document.querySelector(
-          `h1:contains('${sectionId.replace(/-/g, " ")}')`
-        ) as HTMLElement);
+      const element = document.getElementById(sectionId);
 
-      if (h1Element) {
-        const elementPosition = (h1Element as HTMLElement).offsetTop;
+      if (element) {
+        const elementPosition = element.offsetTop;
         const offsetPosition = elementPosition - headerHeight;
+
         window.scrollTo({
           top: offsetPosition,
           behavior: "smooth",
         });
-        console.log(sectionId);
-        setCurrentSection(sectionId);
+
+        // Lắng nghe sự kiện scroll hoàn tất
+        const handleScrollEnd = () => {
+          setCurrentSection(sectionId);
+          window.removeEventListener("scrollend", handleScrollEnd);
+        };
+
+        if ("onscrollend" in window) {
+          // Trình duyệt hỗ trợ scrollend
+          window.addEventListener("scrollend", handleScrollEnd);
+        } else {
+          // Trình duyệt không hỗ trợ → Dùng timeout mô phỏng
+          setTimeout(() => {
+            setCurrentSection(sectionId);
+          }, 600); // Khoảng thời gian đủ để scroll kết thúc
+        }
       }
     },
     [headerHeight]

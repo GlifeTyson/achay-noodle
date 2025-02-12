@@ -14,6 +14,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+
 const initValue = {
   user_name: "",
   user_email: "",
@@ -42,7 +43,7 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const res = sendEmail("#form");
-    console.log(data, "data");
+
     toast.promise(res, {
       loadingContent: "Sending...",
       isSuccess: (data) => data.status === 200 && data.text === "OK",
@@ -193,7 +194,7 @@ const Form = () => {
         size="small"
         title={contentModal.label}
       >
-        <div className="flex flex-col gap-4 items-center justify-center p-4">
+        <div className="flex flex-col gap-6 items-center justify-center p-4">
           <div>
             <p>{contentModal.content1}</p>
             <p>{contentModal.content2}</p>
