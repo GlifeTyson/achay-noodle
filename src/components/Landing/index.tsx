@@ -58,7 +58,7 @@ const Landing = () => {
         style={{ backgroundImage: "url('/assets/landing.jpg')" }}
       />
       <div className="absolute bg-black/50 w-full h-full" />
-      <div className="relative flex flex-col md:flex-row mx-auto gap-5 md:gap-40 w-full max-w-7xl h-full py-40 px-10">
+      <div className="relative flex flex-col md:flex-row md:items-center mx-auto gap-5 md:gap-40 w-full max-w-7xl h-full py-40 px-10">
         <div className="w-full md:w-1/2 h-[30vh] flex flex-col gap-4 justify-center">
           <div>
             <motion.h1

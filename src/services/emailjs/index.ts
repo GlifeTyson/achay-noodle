@@ -11,7 +11,7 @@ const initEmailJS = () => {
   emailjs.init({
     publicKey: config.publicKey,
   });
-  console.log("EmailJS initialized successfully");
+  // console.log("EmailJS initialized successfully");
 };
 
 const sendEmail = async (templateParams: string | HTMLFormElement) => {

@@ -123,12 +123,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, tweenOpacity, setTweenFactor]);
 
   return (
-    <section className={classNames({ embla: true, "w-full": true })}>
+    <section
+      className={classNames({
+        embla: true,
+        "w-full h-full flex flex-col justify-center": true,
+      })}
+    >
       <div ref={emblaRef} className="embla__viewport">
         <div
           className={classNames({
             embla__container: true,
-            "flex flex-col touch-pan-y touch-pinch-zoom mt-[1rem] h-[20vh]":
+            "flex flex-col touch-pan-y touch-pinch-zoom mt-[1rem] h-[20vh] md:h-[40vh]":
               !!vertical,
           })}
         >
@@ -140,7 +145,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   loading="lazy"
                   src={imageUrl}
                   alt="Your alt text"
-                  className="object-contain rounded-3xl"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>

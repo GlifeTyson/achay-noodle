@@ -10,18 +10,19 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const { scrollToSection, headerRef, currentSection } = useScrollToSection();
   const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll();
   const firstTwoItems = headerItems.slice(0, 2);
   const lastItem = headerItems.slice(2, 4);
-  const { t, i18n } = useTranslation();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Hiệu ứng cuộn mượt
+      behavior: "smooth",
     });
   };
+  if (!i18n.isInitialized) return null;
   return (
     <header
       ref={headerRef}
