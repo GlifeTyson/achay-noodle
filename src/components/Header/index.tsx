@@ -39,7 +39,7 @@ const Header = () => {
                 src={"/assets/logo.png"}
                 alt="logo"
                 fill
-                priority
+                loading="lazy"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-contain rounded-b-xl"
                 onClick={scrollToTop}
@@ -123,6 +123,7 @@ const Header = () => {
                     <div className="relative w-10 h-7">
                       <Image
                         fill
+                        loading="lazy"
                         alt="flag"
                         src={flag.flagUrl}
                         className="object-contain size-full"

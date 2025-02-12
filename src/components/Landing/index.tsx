@@ -54,49 +54,51 @@ const Landing = () => {
         }}
       />
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-b-full"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/assets/landing.jpg')" }}
       />
-      <div className="absolute bg-black/40 w-full h-full rounded-b-full" />
-      <div className="relative flex flex-col gap-5 w-full max-w-5xl mx-auto h-full pt-[20vh] px-10 text-center">
-        <div>
-          <motion.h1
-            id="introduce"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.4,
-              scale: { type: "spring", visualDuration: 1, bounce: 0.5 },
-            }}
-            className="text-playfair text-3xl md:text-5xl font-extrabold text-white"
-          >
-            {t("landingTitle")}
-          </motion.h1>
-          <motion.h2
-            initial={{ transform: "translateX(-200px)" }}
-            animate={{ transform: "translateX(0px)" }}
-            transition={{ type: "spring", visualDuration: 0.4, bounce: 0.5 }}
-            className="text-playfair text-2xl md:text-3xl font-extrabold text-white"
-          >
-            {t("landingSince")}
-          </motion.h2>
+      <div className="absolute bg-black/50 w-full h-full" />
+      <div className="relative flex flex-col md:flex-row mx-auto gap-5 md:gap-40 w-full max-w-7xl h-full py-40 px-10">
+        <div className="w-full md:w-1/2 h-[30vh] flex flex-col gap-4 justify-center">
+          <div>
+            <motion.h1
+              id="introduce"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.4,
+                scale: { type: "spring", visualDuration: 1, bounce: 0.5 },
+              }}
+              className="text-playfair text-3xl md:text-5xl font-extrabold text-white"
+            >
+              {t("landingTitle")}
+            </motion.h1>
+            <motion.h2
+              initial={{ transform: "translateX(-200px)" }}
+              animate={{ transform: "translateX(0px)" }}
+              transition={{ type: "spring", visualDuration: 0.4, bounce: 0.5 }}
+              className="text-playfair text-2xl md:text-3xl font-extrabold text-white"
+            >
+              {t("landingSince")}
+            </motion.h2>
+          </div>
+          <div>
+            <motion.p
+              variants={variants}
+              initial={"hidden"}
+              animate={"visible"}
+              className="text-playfair text-white text-sm md:text-2xl"
+            >
+              {t("landingDescribe1")}
+              {t("landingDescribe2")}
+              {t("landingDescribe3")}
+            </motion.p>
+          </div>
         </div>
-        <div>
-          <motion.p
-            variants={variants}
-            initial={"hidden"}
-            animate={"visible"}
-            className="text-playfair text-white text-sm md:text-2xl"
-          >
-            {t("landingDescribe1")}
-            {t("landingDescribe2")}
-            {t("landingDescribe3")}
-          </motion.p>
-        </div>
-        <div className="mt-0 md:mt-10 w-full h-full mx-auto">
-          {/* <ImageSlider imageUrls={imageUrls} /> */}
+        <div className="flex flex-col items-center w-full md:w-1/2 h-full mx-auto">
           <EmblaCarousel
             autoPlay
+            vertical
             imageUrls={imageUrls}
             options={optionsEmblaCarousel}
           />

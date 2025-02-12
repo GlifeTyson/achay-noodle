@@ -25,7 +25,7 @@ const Menu = () => {
             <div className="relative w-[80vw] h-[20vh] md:w-[20vw] md:h-[30vh] md:hover:scale-125 transition duration-700">
               <Image
                 fill
-                priority
+                loading="lazy"
                 alt="image"
                 src="/assets/noodles/wonton.png"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -40,7 +40,7 @@ const Menu = () => {
             <div className="relative w-[80vw] h-[30vh] md:w-[20vw] md:h-[30vh] scale-75 md:hover:scale-100 transition duration-700">
               <Image
                 fill
-                priority
+                loading="lazy"
                 alt="image"
                 src="/assets/noodles/wonton-pork-noodle.webp"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -55,7 +55,7 @@ const Menu = () => {
             <div className="relative w-[80vw] h-[20vh] md:w-[20vw] md:h-[30vh] md:hover:scale-125 transition duration-700">
               <Image
                 fill
-                priority
+                loading="lazy"
                 alt="image"
                 src="/assets/noodles/extra-noodle.png"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

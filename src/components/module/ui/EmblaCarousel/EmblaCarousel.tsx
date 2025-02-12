@@ -1,19 +1,20 @@
 "use client";
-import React, { useCallback, useEffect, useRef } from "react";
+import { classNames } from "@/utils/common";
 import {
   EmblaCarouselType,
   EmblaEventType,
   EmblaOptionsType,
 } from "embla-carousel";
+import Autoplay, { AutoplayType } from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
+import React, { useCallback, useEffect, useRef } from "react";
 import {
   NextButton,
   PrevButton,
   usePrevNextButtons,
 } from "./EmblaCarouselArrowButtons";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
-import Image from "next/image";
-import Autoplay, { AutoplayType } from "embla-carousel-autoplay";
 
 const TWEEN_FACTOR_BASE = 0.84;
 
@@ -25,17 +26,34 @@ type PropType = {
   options?: EmblaOptionsType;
   autoPlay?: boolean;
   timePerImage?: number;
+  vertical?: boolean;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options, imageUrls, autoPlay = false, timePerImage = 2000 } = props;
+  const {
+    options,
+    imageUrls,
+    autoPlay = false,
+    vertical = false,
+    timePerImage = 2000,
+  } = props;
 
   const plugins: AutoplayType[] = [];
+
   if (autoPlay) {
-    plugins.push(Autoplay({ playOnInit: true, delay: timePerImage }));
+    plugins.push(
+      Autoplay({
+        playOnInit: true,
+        delay: timePerImage,
+      })
+    );
   }
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, plugins);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    vertical ? { ...options, axis: "y" } : options,
+    plugins
+  );
+
   const tweenFactor = useRef(0);
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -105,17 +123,24 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, tweenOpacity, setTweenFactor]);
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
+    <section className={classNames({ embla: true, "w-full": true })}>
+      <div ref={emblaRef} className="embla__viewport">
+        <div
+          className={classNames({
+            embla__container: true,
+            "flex flex-col touch-pan-y touch-pinch-zoom mt-[1rem] h-[20vh]":
+              !!vertical,
+          })}
+        >
           {imageUrls.map((imageUrl, index) => (
             <div key={index} className="embla__slide">
-              <div className="relative w-full h-[25vh] md:h-[35vh]">
+              <div className="relative w-full h-[25vh] md:h-[40vh]">
                 <Image
                   fill
+                  loading="lazy"
                   src={imageUrl}
                   alt="Your alt text"
-                  className="object-cover rounded-3xl"
+                  className="object-contain rounded-3xl"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
@@ -126,8 +151,16 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
       <div className="embla__controls">
         <div className="embla__buttons">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+          <PrevButton
+            vertical={vertical}
+            onClick={onPrevButtonClick}
+            disabled={prevBtnDisabled}
+          />
+          <NextButton
+            vertical={vertical}
+            onClick={onNextButtonClick}
+            disabled={nextBtnDisabled}
+          />
         </div>
 
         <div className="embla__dots">
@@ -142,7 +175,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

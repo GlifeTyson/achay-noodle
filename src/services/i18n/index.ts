@@ -9,7 +9,7 @@ i18n.use(initReactI18next).init({
     en: { translation: enTranslation },
     vi: { translation: viTranslation },
   },
-  lng: "en", // default
+  lng: "vi", // default
   fallbackLng: "en", // fallback lang
   interpolation: {
     escapeValue: false,
