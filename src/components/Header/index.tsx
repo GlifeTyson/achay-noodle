@@ -16,7 +16,12 @@ const Header = () => {
   const firstTwoItems = headerItems.slice(0, 2);
   const lastItem = headerItems.slice(2, 4);
   const { t, i18n } = useTranslation();
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Hiệu ứng cuộn mượt
+    });
+  };
   return (
     <header
       ref={headerRef}
@@ -37,6 +42,7 @@ const Header = () => {
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-contain rounded-b-xl"
+                onClick={scrollToTop}
               />
             </div>
           </li>
