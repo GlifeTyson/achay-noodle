@@ -6,13 +6,14 @@ import { flags, headerItems } from "@/utils/constants";
 import { ChevronRight, Globe } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const { scrollToSection, headerRef, currentSection } = useScrollToSection();
+  const [isClient, setIsClient] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const { scrollToSection, headerRef, currentSection } = useScrollToSection();
   const { scrollYProgress } = useScroll();
   const firstTwoItems = headerItems.slice(0, 2);
   const lastItem = headerItems.slice(2, 4);
@@ -22,7 +23,14 @@ const Header = () => {
       behavior: "smooth",
     });
   };
-  if (!i18n.isInitialized) return null;
+  useEffect(() => {
+    if (i18n.isInitialized) {
+      setIsClient(true);
+    }
+  }, [i18n.isInitialized]);
+
+  if (!isClient) return null;
+
   return (
     <header
       ref={headerRef}
