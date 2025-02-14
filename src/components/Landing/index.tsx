@@ -57,7 +57,7 @@ const Landing = () => {
         style={{ backgroundImage: "url('/assets/landing.jpg')" }}
       />
       <div className="absolute bg-black/50 w-full h-full" />
-      <div className="relative flex flex-col md:flex-row md:items-center mx-auto gap-5 md:gap-40 w-full max-w-7xl h-full py-40 px-10">
+      <div className="relative flex flex-col md:flex-row md:items-center mx-auto gap-5 md:gap-40 w-full max-w-7xl xl:max-w- h-full py-40 px-10">
         <div className="w-full md:w-1/2 h-[30vh] flex flex-col gap-4 justify-center">
           <div>
             <motion.h1
@@ -68,7 +68,7 @@ const Landing = () => {
                 duration: 0.4,
                 scale: { type: "spring", visualDuration: 1, bounce: 0.5 },
               }}
-              className="text-playfair text-3xl md:text-5xl font-extrabold text-white"
+              className="text-playfair text-3xl md:text-5xl xl:text-7xl font-extrabold text-white"
             >
               {t("landingTitle")}
             </motion.h1>
@@ -76,7 +76,7 @@ const Landing = () => {
               initial={{ transform: "translateX(-200px)" }}
               animate={{ transform: "translateX(0px)" }}
               transition={{ type: "spring", visualDuration: 0.4, bounce: 0.5 }}
-              className="text-playfair text-2xl md:text-3xl font-extrabold text-white"
+              className="text-playfair text-2xl md:text-3xl xl:text-5xl font-extrabold text-white"
             >
               {t("landingSince")}
             </motion.h2>

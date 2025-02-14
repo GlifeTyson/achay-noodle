@@ -7,26 +7,26 @@ const imageUrls = [
   "/assets/noodles/wonton-pork-noodle.webp",
   "/assets/noodles/extra-noodle.png",
 ];
-const imageTitle = ["Hoành thánh", "Mì hoành thành", "Mì tươi"];
-const imageDescription = [
-  "Hoành thánh là món ăn truyền thống với nhân thịt heo băm nhuyễn, bọc trong lớp vỏ mỏng và chiên hoặc nấu chín trong nước dùng.",
-  "Mì hoành thánh kết hợp giữa sợi mì dai mềm và hoành thánh thơm ngon, được chan với nước dùng đậm đà, thường đi kèm rau cải và hành lá.",
-  "Mì tươi là sợi mì được làm thủ công, không qua quá trình sấy khô, giữ được độ dai và hương vị đặc trưng, thích hợp cho nhiều món ăn khác nhau.",
-];
 
 const Menu = () => {
   const { t } = useTranslation();
+
+  const imageTitle = [t("menuItem1"), t("menuItem2"), t("menuItem3")];
+  const imageDescription = [t("wonton"), t("wontonNoodle"), t("noodle")];
   return (
-    <section id="menu">
-      <div className="bg-gray-300/60 p-2">
+    <section id="menu" className="bg-flour px-6 pt-20 pb-10">
+      <h1 id="menu" className="text-playfair text-5xl font-medium">
+        {t("menuTitle")}
+      </h1>
+      <div className="p-10">
         <EmblaCarousel
-          // autoPlay
+          autoPlay
           wrapWithBorder
           timePerImage={2000}
           imageUrls={imageUrls}
           imageTitles={imageTitle}
           contentImages={imageDescription}
-          // options={{ loop: true }}
+          options={{ loop: true }}
         />
       </div>
     </section>

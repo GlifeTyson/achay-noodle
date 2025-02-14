@@ -153,8 +153,8 @@ const Form = () => {
                 label="Date"
                 wrapperClassname="flex flex-col justify-between size-full"
                 labelClassName="text-sm md:text-lg"
-                placeHolderText="YYYY-MM-DD"
-                className="w-full h-8 md:h-10 text-sm placeholder:text-xs placeholder:md:text-lg md:text-lg border border-gray-200 text-gray-800"
+                placeholderText="YYYY-MM-DD"
+                className="w-full h-8 md:h-10 text-sm placeholder:pl-2 placeholder:text-xs placeholder:md:text-lg md:text-lg border border-gray-200 text-gray-800"
                 onSelect={onChange}
               />
             )}

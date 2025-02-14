@@ -2,7 +2,6 @@ import Label from "@/components/module/Label";
 import { classNames } from "@/utils/common";
 import { subDays } from "date-fns/subDays";
 import { Calendar } from "lucide-react";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -13,7 +12,7 @@ type TDatePicker = {
   title?: string;
   dateFormat?: string | string[];
   isClearable?: boolean;
-  placeHolderText?: string;
+  placeholderText?: string;
   showIcon?: boolean;
   label?: string;
   required?: boolean;
@@ -28,7 +27,7 @@ const CustomDatePicker = (props: TDatePicker) => {
     title,
     dateFormat,
     isClearable,
-    placeHolderText,
+    placeholderText,
     showIcon = true,
     required = false,
     label,
@@ -52,12 +51,19 @@ const CustomDatePicker = (props: TDatePicker) => {
       <DatePicker
         title={title}
         name={name}
+        value=""
         isClearable={isClearable}
         dateFormat={dateFormat}
         showIcon={showIcon}
-        icon={<Calendar className="size-6 top-0" />}
-        placeholderText={placeHolderText}
-        calendarIconClassName="!p-0 top-2.5 left-1.5"
+        icon={
+          <div className="calendar icon h-full my-auto">
+            <Calendar className="size-5" />
+          </div>
+        }
+        placeholderText={placeholderText}
+        calendarIconClassName={classNames({
+          "bottom-0.5 md:-top-0.5": true,
+        })}
         className={classNames({
           "w-full rounded-lg": true,
           [className]: true,
