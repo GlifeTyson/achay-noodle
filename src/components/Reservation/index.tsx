@@ -6,7 +6,7 @@ const Reservation = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="reservation" className="bg-flour px-6">
+    <section id="reservation" className="bg-flour px-6 py-3">
       <h1 id="reservation" className="text-playfair text-5xl font-medium">
         {t("headerTitle3")}
       </h1>

@@ -6,7 +6,6 @@ import { EmblaOptionsType } from "embla-carousel";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-// import ImageSlider from "@/components/module/ui/ImageSlider";
 
 const optionsEmblaCarousel: EmblaOptionsType = { loop: true };
 
@@ -87,7 +86,7 @@ const Landing = () => {
               variants={variants}
               initial={"hidden"}
               animate={"visible"}
-              className="text-playfair text-white text-sm md:text-2xl"
+              className="text-playfair text-white text-sm md:text-2xl italic"
             >
               {t("landingDescribe1")}
               {t("landingDescribe2")}

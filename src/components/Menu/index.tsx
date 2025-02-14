@@ -1,17 +1,41 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
-const content = {
-  title: "Best seller tại quán",
-  imageUrls: [],
-  buttonContent: "Khám phá",
-};
+import EmblaCarousel from "../module/ui/EmblaCarousel/EmblaCarousel";
+const imageUrls = [
+  "/assets/noodles/wonton.png",
+  "/assets/noodles/wonton-pork-noodle.webp",
+  "/assets/noodles/extra-noodle.png",
+];
+const imageTitle = ["Hoành thánh", "Mì hoành thành", "Mì tươi"];
+const imageDescription = [
+  "Hoành thánh là món ăn truyền thống với nhân thịt heo băm nhuyễn, bọc trong lớp vỏ mỏng và chiên hoặc nấu chín trong nước dùng.",
+  "Mì hoành thánh kết hợp giữa sợi mì dai mềm và hoành thánh thơm ngon, được chan với nước dùng đậm đà, thường đi kèm rau cải và hành lá.",
+  "Mì tươi là sợi mì được làm thủ công, không qua quá trình sấy khô, giữ được độ dai và hương vị đặc trưng, thích hợp cho nhiều món ăn khác nhau.",
+];
+
 const Menu = () => {
   const { t } = useTranslation();
   return (
     <section id="menu">
-      <div className="w-full flex flex-col gap-5 md:gap-40 h-fit md:h-[95vh] bg-flour px-6 pt-20 pb-10 md:px-8">
+      <div className="bg-gray-300/60 p-2">
+        <EmblaCarousel
+          // autoPlay
+          wrapWithBorder
+          timePerImage={2000}
+          imageUrls={imageUrls}
+          imageTitles={imageTitle}
+          contentImages={imageDescription}
+          // options={{ loop: true }}
+        />
+      </div>
+    </section>
+  );
+};
+
+export default Menu;
+{
+  /* <div className="w-full flex flex-col gap-5 md:gap-40 h-fit md:h-[95vh] bg-flour px-6 pt-20 pb-10 md:px-8">
         <div className="flex flex-col md:flex-row items-start justify-center gap-5 md:justify-between">
           <h1 id="menu" className="text-playfair text-5xl font-medium">
             {t("menuTitle")}
@@ -67,9 +91,5 @@ const Menu = () => {
             </span>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
-
-export default Menu;
+      </div> */
+}

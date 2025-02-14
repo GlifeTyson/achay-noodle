@@ -15,6 +15,7 @@ import {
   useForm,
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import CustomDatePicker from "../module/ui/DatePicker";
 
 const initValue = {
   user_name: "",
@@ -89,9 +90,9 @@ const Form = () => {
                 label={t("name")}
                 type="text"
                 name="user_name"
-                className="w-full h-7 md:h-9 text-sm md:text-base"
+                className="w-full h-8 md:h-10 text-sm md:text-lg"
                 defaultValue={value}
-                labelClassName="text-sm md:text-base"
+                labelClassName="text-sm md:text-lg"
                 errorMessage={errors.user_name?.message}
                 onChange={onChange}
               />
@@ -109,8 +110,8 @@ const Form = () => {
                 label={t("email")}
                 type="text"
                 name="user_email"
-                labelClassName="text-sm md:text-base"
-                className="w-full h-7 md:h-9 text-sm md:text-base"
+                labelClassName="text-sm md:text-lg"
+                className="w-full h-8 md:h-10 text-sm md:text-lg"
                 errorMessage={errors.user_email?.message}
                 onChange={onChange}
               />
@@ -130,8 +131,8 @@ const Form = () => {
                 name="number_of_guests"
                 min={0}
                 max={20}
-                labelClassName="text-sm md:text-base"
-                className="w-full h-7 md:h-9 text-sm md:text-base"
+                labelClassName="text-sm md:text-lg"
+                className="w-full h-8 md:h-10 text-sm md:text-lg"
                 errorMessage={errors.number_of_guests?.message}
                 onChange={(value) => onChange(Number(value))}
               />
@@ -139,24 +140,25 @@ const Form = () => {
           />
         </div>
         <div className="col-span-1">
-          <div className="flex flex-col gap-2 md:gap-2.5">
-            <Controller
-              control={control}
-              name="date"
-              render={({ field: { value, onChange } }) => (
-                <Input
-                  required
-                  label={t("date")}
-                  type="date"
-                  name="date"
-                  defaultValue={value}
-                  min={today}
-                  labelClassName="text-sm md:text-base"
-                  className="w-full h-7 md:h-9 text-sm md:text-base"
-                />
-              )}
-            />
-          </div>
+          <Controller
+            control={control}
+            name="date"
+            render={({ field: { value, onChange } }) => (
+              <CustomDatePicker
+                isClearable
+                showIcon
+                required
+                title="Date"
+                name="date"
+                label="Date"
+                wrapperClassname="flex flex-col justify-between size-full"
+                labelClassName="text-sm md:text-lg"
+                placeHolderText="YYYY-MM-DD"
+                className="w-full h-8 md:h-10 text-sm placeholder:text-xs placeholder:md:text-lg md:text-lg border border-gray-200 text-gray-800"
+                onSelect={onChange}
+              />
+            )}
+          />
         </div>
         <div className="col-span-1">
           <div className="flex flex-col gap-2 md:gap-2.5">
@@ -171,8 +173,8 @@ const Form = () => {
                     label={t("time")}
                     type="time"
                     name="time"
-                    labelClassName="text-sm md:text-base"
-                    className="w-full h-7 md:h-9 text-sm md:text-base"
+                    labelClassName="text-sm md:text-lg"
+                    className="w-full h-8 md:h-10 text-sm md:text-lg"
                     onChange={onChange}
                   />
                 </>
@@ -184,7 +186,7 @@ const Form = () => {
           <Button
             variant="outline"
             // disabled={!isDirty}
-            className="w-full h-9 rounded-lg"
+            className="w-full h-10 rounded-lg"
             onClick={handleSubmit(onSubmit)}
           >
             {t("headerTitle3")}

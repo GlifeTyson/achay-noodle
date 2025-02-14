@@ -27,15 +27,23 @@ type PropType = {
   autoPlay?: boolean;
   timePerImage?: number;
   vertical?: boolean;
+  size?: "small" | "default";
+  imageTitles?: string[];
+  contentImages?: string[];
+  wrapWithBorder?: boolean;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const {
     options,
     imageUrls,
+    imageTitles,
+    contentImages,
     autoPlay = false,
     vertical = false,
+    wrapWithBorder = false,
     timePerImage = 2000,
+    size = "default",
   } = props;
 
   const plugins: AutoplayType[] = [];
@@ -127,6 +135,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       className={classNames({
         embla: true,
         "w-full h-full flex flex-col justify-center": true,
+        "w-[80vw]": size === "small",
       })}
     >
       <div ref={emblaRef} className="embla__viewport">
@@ -138,8 +147,20 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           })}
         >
           {imageUrls.map((imageUrl, index) => (
-            <div key={index} className="embla__slide">
-              <div className="relative w-full h-[25vh] md:h-[40vh]">
+            <div
+              key={index}
+              className={classNames({
+                "embla__slide flex flex-row items-center md:gap-4": true,
+                "p-5": !!imageTitles?.[index] && !!contentImages?.[index],
+                "border-4 border-primary/50 rounded-3xl": !!wrapWithBorder,
+              })}
+            >
+              <div
+                className={classNames({
+                  "relative w-full h-[25vh] md:h-[40vh]": true,
+                  "w-1/2": !!imageTitles?.[index] && !!contentImages?.[index],
+                })}
+              >
                 <Image
                   fill
                   loading="lazy"
@@ -149,6 +170,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
+              {imageTitles?.[index] && contentImages?.[index] && (
+                <div className="flex flex-col justify-center gap-3 md:gap-10 text-playfair text-left font-medium w-1/2 h-full">
+                  <div className="text-3xl">{imageTitles[index]}</div>
+                  <div className="italic">{contentImages?.[index]}</div>
+                </div>
+              )}
             </div>
           ))}
         </div>

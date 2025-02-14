@@ -33,5 +33,8 @@
   "email": "Email",
   "number_of_guest": "Number of guest",
   "date": "Date",
-  "time": "Time"
+  "time": "Time",
+  "wonton": "Wonton is a traditional dish with minced pork filling, wrapped in a thin dough skin, and either fried or cooked in broth.",
+  "wontonNoodle": "Wonton noodle soup combines chewy noodles with delicious wontons, served in a flavorful broth, often accompanied by leafy greens and scallions.",
+  "noodle": "Fresh noodles are handmade without drying, retaining their chewiness and distinct flavor, making them suitable for various dishes."
 }
