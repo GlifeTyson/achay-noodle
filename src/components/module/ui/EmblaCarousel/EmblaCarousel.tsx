@@ -29,8 +29,9 @@ type PropType = {
   vertical?: boolean;
   size?: "small" | "default";
   imageTitles?: string[];
-  contentImages?: string[];
+  imageDescriptions?: string[];
   wrapWithBorder?: boolean;
+  subContent?: string[];
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
@@ -38,7 +39,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     options,
     imageUrls,
     imageTitles,
-    contentImages,
+    imageDescriptions,
+    subContent,
     autoPlay = false,
     vertical = false,
     wrapWithBorder = false,
@@ -151,14 +153,15 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               key={index}
               className={classNames({
                 "embla__slide flex flex-row items-center md:gap-4": true,
-                "p-5": !!imageTitles?.[index] && !!contentImages?.[index],
+                "p-5": !!imageTitles?.[index] && !!imageDescriptions?.[index],
                 "border-4 border-primary/50 rounded-3xl": !!wrapWithBorder,
               })}
             >
               <div
                 className={classNames({
                   "relative w-full h-[25vh] md:h-[40vh]": true,
-                  "w-1/2": !!imageTitles?.[index] && !!contentImages?.[index],
+                  "w-1/2":
+                    !!imageTitles?.[index] && !!imageDescriptions?.[index],
                 })}
               >
                 <Image
@@ -170,10 +173,21 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-              {imageTitles?.[index] && contentImages?.[index] && (
+              {imageTitles?.[index] && (
                 <div className="flex flex-col justify-center gap-3 md:gap-10 text-playfair text-left font-medium w-1/2 h-full">
-                  <div className="text-3xl">{imageTitles[index]}</div>
-                  <div className="italic">{contentImages?.[index]}</div>
+                  <div className="text-3xl">
+                    <b>{imageTitles[index]}</b>
+                  </div>
+                  {imageDescriptions?.[index] && (
+                    <div className="italic line-clamp-4">
+                      {imageDescriptions?.[index]}
+                    </div>
+                  )}
+                  {subContent?.[index] && (
+                    <span className="text-base lg:text-2xl">
+                      <b>{subContent?.[index]}</b>
+                    </span>
+                  )}
                 </div>
               )}
             </div>

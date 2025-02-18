@@ -100,7 +100,7 @@ const Header = () => {
               childrenClassName="px-0 py-0"
               label={
                 <div
-                  className="w-11 h-7 border border-gray-400 rounded flex items-center p-2 justify-center"
+                  className="w-11 h-7 border border-gray-400 rounded-md flex items-center p-2 justify-center"
                   onClick={() => {
                     setExpanded(!expanded);
                   }}

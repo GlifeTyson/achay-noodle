@@ -18,6 +18,7 @@ type TDatePicker = {
   required?: boolean;
   labelClassName?: string;
   wrapperClassname?: string;
+  value: string;
 };
 const CustomDatePicker = (props: TDatePicker) => {
   const {
@@ -33,6 +34,7 @@ const CustomDatePicker = (props: TDatePicker) => {
     label,
     labelClassName = "",
     wrapperClassname = "",
+    value,
   } = props;
   // const [startDate, setStartDate] = useState(new Date());
   return (
@@ -51,7 +53,7 @@ const CustomDatePicker = (props: TDatePicker) => {
       <DatePicker
         title={title}
         name={name}
-        value=""
+        value={value}
         isClearable={isClearable}
         dateFormat={dateFormat}
         showIcon={showIcon}

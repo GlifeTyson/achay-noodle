@@ -31,7 +31,7 @@ const Form = () => {
   const [currentTime, setCurrentTime] = useState("");
   const [open, setOpenModal] = useState(false);
   const today = new Date().toISOString().split("T")[0];
-
+  // const today = new Date();
   const formMethods = useForm({
     mode: "onChange",
     defaultValues: initValue,
@@ -76,7 +76,7 @@ const Form = () => {
     <form
       id="form"
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center justify-center gap-5 w-full h-full p-4 md:p-6 border border-black rounded-md text-playfair"
+      className="flex flex-col items-center justify-center gap-5 w-full h-fit p-4 md:p-6 border border-black rounded-md text-playfair"
     >
       <span className="text-xl md:text-3xl font-medium">{t("booking")}</span>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -148,6 +148,7 @@ const Form = () => {
                 isClearable
                 showIcon
                 required
+                value={today}
                 title="Date"
                 name="date"
                 label="Date"

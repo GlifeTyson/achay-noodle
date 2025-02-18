@@ -2,16 +2,16 @@
 import HomeIndex from "@/components/Home";
 import { initEmailJS } from "@/services/emailjs";
 import "@/services/i18n/index";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 const Page = () => {
   useEffect(() => {
     initEmailJS();
   }, []);
 
   return (
-    <div>
+    <Suspense fallback="loading">
       <HomeIndex />
-    </div>
+    </Suspense>
   );
 };
 
